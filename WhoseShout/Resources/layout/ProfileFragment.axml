@@ -17,15 +17,12 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:scaleType="centerCrop" />
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+
             <EditText
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:hint="Twitter"
-                android:text="JamesMontemagno" />
-        </android.support.design.widget.TextInputLayout>
+                local:MvxBind="Text Name" />
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -69,7 +66,8 @@
             android:layout_height="wrap_content"
             android:text="Name here"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:singleLine="true" />
+            android:singleLine="true" 
+            local:MvxBind="Text Name"/>
         <TextView
             android:id="@+id/profile_description"
             android:paddingLeft="8dp"

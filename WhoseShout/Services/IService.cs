@@ -1,11 +1,24 @@
 ﻿using System;
-namespace WhoseShout
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using WhoseShout.Models;
+
+namespace WhoseShout.Services
 {
-	public class IService
+	public interface IService
 	{
-		public IService()
-		{
-		}
+		Task Initialize();
+
+		Task<IEnumerable<Friend>> GetFriends();
+
+		Task<Friend> AddFriend(string name);
+
+		Task<Friend> UpdateFriend(Friend friend);
+
+		Task<bool> DeleteFriend(Friend friend);
+
+		Task SyncFriends();
+
 	}
 }
 
