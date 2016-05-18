@@ -107,23 +107,18 @@ namespace WhoseShout.Activities
 
             GoogleSignIn();
 
-            ShowFragment(0);
+            ShowFragment(Resource.Id.nav_home);
 
         }
 
         private void ShowFragment(int position)
         {
-            //e.MenuItem.SetChecked(true);
-
             switch (position)
             {
                 case Resource.Id.nav_home:
-
-                    //ListItemClicked(0);
+                    ViewModel.NavigateTo(0);
                     break;
-                //				case Resource.Id.nav_friends:
-                //					ListItemClicked(1);
-                //					break;
+
                 case Resource.Id.nav_profile:
 					var param = new Dictionary<string, string>
 					{
@@ -132,19 +127,12 @@ namespace WhoseShout.Activities
 					};
 
 					ViewModel.NavigateTo(1, param);
-
-                    //ListItemClicked(2);
                     break;
 
 				case Resource.Id.nav_friends:
-
 					ViewModel.NavigateTo(2);
-
-					//ListItemClicked(2);
 				break;
             }
-
-
 
             drawerLayout.CloseDrawers();
         }
@@ -169,34 +157,6 @@ namespace WhoseShout.Activities
             Intent signInIntent = Auth.GoogleSignInApi.GetSignInIntent(mGoogleApiClient);
             StartActivityForResult(signInIntent, RC_SIGN_IN);
         }
-
-        //private void ListItemClicked(int position)
-        //{
-        //    Android.Support.V4.App.Fragment fragment = null;
-        //    switch (position)
-        //    {
-        //        case 0:
-                    
-        //            fragment = new BrowseFragment();
-        //            break;
-        //        //			case 1:
-        //        //				fragment = new FriendsFragment ();
-        //        //				break;
-        //        case 2:
-
-        //            Bundle profile = new Bundle();
-        //            profile.PutString("email", mGoogleSignInAccount.Email);
-        //            profile.PutString("name", mGoogleSignInAccount.DisplayName);
-
-        //            fragment = new ProfileFragment();
-        //            fragment.Arguments = profile;
-        //            break;
-        //    }
-
-        //    SupportFragmentManager.BeginTransaction()
-        //        .Replace(Resource.Id.content_frame, fragment)
-        //        .Commit();
-        //}
 
         public override bool OnOptionsItemSelected(IMenuItem item)
         {

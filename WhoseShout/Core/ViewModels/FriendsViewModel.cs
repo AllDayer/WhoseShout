@@ -23,7 +23,21 @@ namespace WhoseShout.Core.ViewModels
 			}
 		}
 
-		public FriendsViewModel()
+        private string m_FriendsTest = "Friends";
+        public string FriendsTest
+        {
+            get
+            {
+                return m_FriendsTest;
+            }
+            set
+            {
+                m_FriendsTest = value;
+                RaisePropertyChanged(nameof(FriendsTest));
+            }
+        }
+
+        public FriendsViewModel()
 		{
 			ServiceLocator.Instance.Resolve<IService>();
 		}

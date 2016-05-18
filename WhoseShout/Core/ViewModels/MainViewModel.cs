@@ -7,12 +7,11 @@ namespace WhoseShout.Core.ViewModels
     public class MainViewModel : MvxViewModel
     {
         readonly Type[] _menuItemTypes = {
-            typeof(SettingsViewModel),
-			typeof(ProfileViewModel),
+            typeof(HomeViewModel),
+            typeof(ProfileViewModel),
+            typeof(FriendsViewModel),
         };
-
-        public IEnumerable<string> MenuItems { get; private set; } = new[] { "My List", "My Settings" };
-
+        
         public void ShowDefaultMenuItem()
         {
             NavigateTo(0);
@@ -29,20 +28,20 @@ namespace WhoseShout.Core.ViewModels
         }
     }
 
-    public class MenuItem : Tuple<string, Type>
-    {
-        public MenuItem(string displayName, Type viewModelType)
-            : base(displayName, viewModelType)
-        { }
+    //public class MenuItem : Tuple<string, Type>
+    //{
+    //    public MenuItem(string displayName, Type viewModelType)
+    //        : base(displayName, viewModelType)
+    //    { }
 
-        public string DisplayName
-        {
-            get { return Item1; }
-        }
+    //    public string DisplayName
+    //    {
+    //        get { return Item1; }
+    //    }
 
-        public Type ViewModelType
-        {
-            get { return Item2; }
-        }
-    }
+    //    public Type ViewModelType
+    //    {
+    //        get { return Item2; }
+    //    }
+    //}
 }
