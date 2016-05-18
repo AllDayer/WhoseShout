@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using WhoseShout.Models;
+using System.Linq;
 
 namespace WhoseShout.Services
 {
@@ -42,27 +43,33 @@ namespace WhoseShout.Services
 
         public Task Initialize()
         {
-            throw new NotImplementedException();
+			return null;
         }
 
         public Task<IEnumerable<Friend>> GetFriends()
         {
-            throw new NotImplementedException();
+			IEnumerable<Friend> items = friends.AsEnumerable();
+			return Task.FromResult(items);
         }
 
         public Task<Friend> UpdateFriend(Friend friend)
         {
-            throw new NotImplementedException();
+			var item = friends.FirstOrDefault(x => x.FriendId == friend.FriendId);
+			friends.Remove(item);
+			friends.Add(item);
+			return Task.FromResult(friend);
+
         }
 
         public Task<bool> DeleteFriend(Friend friend)
         {
-            throw new NotImplementedException();
+			friends.Remove(friend);
+			return Task.FromResult(true);
         }
 
         public Task SyncFriends()
         {
-            throw new NotImplementedException();
+			return null;
         }
     }
 }

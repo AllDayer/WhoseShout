@@ -173,6 +173,8 @@
     <Compile Include="Services\IService.cs" />
     <Compile Include="Services\MockService.cs" />
     <Compile Include="Setup.cs" />
+    <Compile Include="Fragments\FriendsFragment.cs" />
+    <Compile Include="Core\ViewModels\FriendsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -189,6 +191,7 @@
     <AndroidResource Include="Resources\layout\ProfileView.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\FriendsFragment.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Main.axml" />

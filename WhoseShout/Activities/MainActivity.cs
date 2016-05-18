@@ -135,6 +135,13 @@ namespace WhoseShout.Activities
 
                     //ListItemClicked(2);
                     break;
+
+				case Resource.Id.nav_friends:
+
+					ViewModel.NavigateTo(2);
+
+					//ListItemClicked(2);
+				break;
             }
 
 
