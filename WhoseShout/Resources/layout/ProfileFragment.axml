@@ -17,19 +17,23 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:scaleType="centerCrop" />
-
-            <EditText
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:hint="Twitter"
-                local:MvxBind="Text Name" />
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <EditText
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:hint="Instagram" />
+                android:hint="Twitter"
+                local:MvxBind="Text Name" />
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="Instagram"
+                local:MvxBind="Text Email" />
         </android.support.design.widget.TextInputLayout>
         <CheckBox
             android:layout_width="fill_parent"
@@ -66,8 +70,8 @@
             android:layout_height="wrap_content"
             android:text="Name here"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:singleLine="true" 
-            local:MvxBind="Text Name"/>
+            android:singleLine="true"
+            local:MvxBind="Text Name" />
         <TextView
             android:id="@+id/profile_description"
             android:paddingLeft="8dp"
@@ -76,6 +80,7 @@
             android:layout_height="wrap_content"
             android:text="Description here"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:singleLine="false" />
+            android:singleLine="false"
+            local:MvxBind="Text Email" />
     </LinearLayout>
 </ScrollView>

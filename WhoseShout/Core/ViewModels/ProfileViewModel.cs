@@ -14,9 +14,23 @@ namespace WhoseShout.Core.ViewModels
             set
             {
                 m_Name = value;
-                RaisePropertyChanged(() => Name);
+				RaisePropertyChanged(nameof(Name));
             }
         }
+
+		private string m_Email;
+		public string Email
+		{
+			get
+			{
+				return m_Email;
+			}
+			set
+			{
+				m_Email = value;
+				RaisePropertyChanged(nameof(Email));
+			}
+		}
 
         //protected override void InitFromBundle(IMvxBundle parameters)
         //{
@@ -27,9 +41,10 @@ namespace WhoseShout.Core.ViewModels
         //    base.InitFromBundle(parameters);
         //}
 
-        public void Init(string name)
+        public void Init(string name, string email)
         {
             Name = name;
+			Email = email;
         }
     }
 }

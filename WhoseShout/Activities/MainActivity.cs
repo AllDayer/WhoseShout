@@ -105,9 +105,10 @@ namespace WhoseShout.Activities
                 //ListItemClicked(0);
             }
 
+            GoogleSignIn();
+
             ShowFragment(0);
 
-            GoogleSignIn();
         }
 
         private void ShowFragment(int position)
@@ -117,20 +118,20 @@ namespace WhoseShout.Activities
             switch (position)
             {
                 case Resource.Id.nav_home:
-                    var param = new Dictionary<string, string>
-                    {
-                        { "email", mGoogleSignInAccount.Email},
-                        { "name", mGoogleSignInAccount.DisplayName }
-                    };
 
-                    ViewModel.NavigateTo(0, param);
                     //ListItemClicked(0);
                     break;
                 //				case Resource.Id.nav_friends:
                 //					ListItemClicked(1);
                 //					break;
                 case Resource.Id.nav_profile:
-                    ViewModel.NavigateTo(2);
+					var param = new Dictionary<string, string>
+					{
+						{ "email", mGoogleSignInAccount.Email},
+						{ "name", mGoogleSignInAccount.DisplayName }
+					};
+
+					ViewModel.NavigateTo(1, param);
 
                     //ListItemClicked(2);
                     break;

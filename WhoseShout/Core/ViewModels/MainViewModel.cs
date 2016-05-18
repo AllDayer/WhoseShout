@@ -7,8 +7,8 @@ namespace WhoseShout.Core.ViewModels
     public class MainViewModel : MvxViewModel
     {
         readonly Type[] _menuItemTypes = {
-            typeof(ProfileViewModel),
             typeof(SettingsViewModel),
+			typeof(ProfileViewModel),
         };
 
         public IEnumerable<string> MenuItems { get; private set; } = new[] { "My List", "My Settings" };
