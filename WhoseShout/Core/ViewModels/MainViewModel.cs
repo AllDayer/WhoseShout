@@ -11,7 +11,13 @@ namespace WhoseShout.Core.ViewModels
             typeof(ProfileViewModel),
             typeof(FriendsViewModel),
         };
-        
+
+        public MainViewModel()
+        {
+            CurrentApp.MainViewModel = this;
+        }
+
+       
         public void ShowDefaultMenuItem()
         {
             NavigateTo(0);

@@ -20,6 +20,7 @@ using Android.Gms.Identity;
 using WhoseShout.Fragments;
 using WhoseShout.Helpers;
 using WhoseShout.Services;
+using WhoseShout.Core;
 using WhoseShout.Core.ViewModels;
 using Android.Support.Design.Widget;
 using MvvmCross.Droid.Support.V7.AppCompat;
@@ -67,6 +68,7 @@ namespace WhoseShout.Activities
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
+
             SetContentView(LayoutResource);
             Toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
             SetSupportActionBar(Toolbar);

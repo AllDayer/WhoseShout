@@ -155,6 +155,8 @@
   <ItemGroup>
     <Compile Include="Bootstrap\JsonPluginBootstrap.cs" />
     <Compile Include="Core\App.cs" />
+    <Compile Include="Core\CurrentApp.cs" />
+    <Compile Include="Core\ViewModels\AppContext.cs" />
     <Compile Include="Core\ViewModels\HomeViewModel.cs" />
     <Compile Include="Core\ViewModels\MainViewModel.cs" />
     <Compile Include="Core\ViewModels\ProfileViewModel.cs" />
@@ -192,8 +194,13 @@
     <AndroidResource Include="Resources\layout\ProfileView.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\FriendsFragment.axml" />
+    <AndroidResource Include="Resources\layout\FriendsFragment.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\layout\HomeFragment.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\item_friend.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

@@ -12,6 +12,8 @@ namespace WhoseShout.Core
             Mvx.RegisterType<IService, MockService>();
             //Mvx.RegisterSingleton<IMvxAppStart>(new MvxAppStart<MainViewModel>());
             RegisterAppStart<MainViewModel>();
+
+            CurrentApp.StartUp();
         }
     }
 }

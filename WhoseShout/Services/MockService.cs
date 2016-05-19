@@ -34,9 +34,9 @@ namespace WhoseShout.Services
         {
             var items = new List<Friend>();
 
-            var friend1 = new Friend() { Name = "Norman" };
+            items.Add(new Friend() { Name = "Norman" });
 
-            var friend2 = new Friend() { Name = "Tristan" };
+            items.Add(new Friend() { Name = "Tristan" });
 
             return items;
         }

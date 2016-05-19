@@ -4,11 +4,15 @@ using MvvmCross.Core.ViewModels;
 using WhoseShout.Helpers;
 using WhoseShout.Services;
 using WhoseShout.Models;
+using System.Threading.Tasks;
 
 namespace WhoseShout.Core.ViewModels
 {
 	public class FriendsViewModel : MvxViewModel
 	{
+        IService m_Service;
+
+  
 		ObservableCollection<Friend> m_Friends = new ObservableCollection<Friend>();
 		public ObservableCollection<Friend> Friends
 		{
@@ -39,8 +43,25 @@ namespace WhoseShout.Core.ViewModels
 
         public FriendsViewModel()
 		{
-			ServiceLocator.Instance.Resolve<IService>();
+            m_Service = ServiceLocator.Instance.Resolve<IService>();
+            var fds = m_Service.GetFriends();
+            Refresh();
 		}
+
+        void Refresh()
+        {
+            ExecuteRefreshCommand();
+        }
+
+        async Task ExecuteRefreshCommand()
+        {
+            var fds = await m_Service.GetFriends();
+            Friends.Clear();
+            foreach(var f in fds)
+            {
+                Friends.Add(f);
+            }
+        }
 
 	}
 }

@@ -13,4 +13,10 @@
         android:hint="Home"
         local:MvxBind="Text FriendsTest" />
   </android.support.design.widget.TextInputLayout>
+  <Mvx.MvxListView
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    local:MvxBind="ItemsSource Friends"
+    local:MvxItemTemplate="@layout/item_friend"
+    />
 </LinearLayout>
