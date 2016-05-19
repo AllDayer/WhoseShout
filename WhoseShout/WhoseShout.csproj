@@ -173,6 +173,7 @@
     <Compile Include="Fragments\HomeFragment.cs" />
     <Compile Include="Fragments\SigninFragment.cs" />
     <Compile Include="Models\Friend.cs" />
+    <Compile Include="Services\AzureService.cs" />
     <Compile Include="Services\IService.cs" />
     <Compile Include="Services\MockService.cs" />
     <Compile Include="Setup.cs" />
