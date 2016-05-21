@@ -17,7 +17,7 @@ namespace WhoseShout.Services
 
         bool m_IsInitialised;
 
-        public Task Initialize()
+        public async Task Initialize()
         {
             if (m_IsInitialised)
             {
@@ -34,6 +34,12 @@ namespace WhoseShout.Services
 
             var store = new MobileServiceSQLiteStore("whoseshout.db");
             store.DefineTable<Friend>();
+
+            await MobileService.SyncContext.InitializeAsync(store, new MobileServiceSyncHandler());
+            friendTable = MobileService.GetSyncTable<Friend>();
+
+            m_IsInitialised = true;
+
         }
 
         public Task<IEnumerable<Friend>> GetFriends()

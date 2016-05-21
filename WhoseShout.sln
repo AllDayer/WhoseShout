@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WhoseShout", "WhoseShout\WhoseShout.csproj", "{D8F2AB71-55ED-4442-A224-18360123F202}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WhoseShoutWeb", "WhoseShoutWeb\WhoseShoutWeb.csproj", "{4018C73D-1BF0-4944-A70B-BE45B30EFED6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,6 +19,10 @@ Global
 		{D8F2AB71-55ED-4442-A224-18360123F202}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D8F2AB71-55ED-4442-A224-18360123F202}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D8F2AB71-55ED-4442-A224-18360123F202}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{4018C73D-1BF0-4944-A70B-BE45B30EFED6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4018C73D-1BF0-4944-A70B-BE45B30EFED6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4018C73D-1BF0-4944-A70B-BE45B30EFED6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4018C73D-1BF0-4944-A70B-BE45B30EFED6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
