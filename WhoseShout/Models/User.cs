@@ -4,9 +4,9 @@ using WhoseShout.Helpers;
 
 namespace WhoseShout.Models
 {
-    public class User : EntityData
+    public class UserItem : EntityData
     {
-        public Guid UserId { get; set; }
+        public String UserId { get; set; }
         public String Name { get; set; }
 
     }

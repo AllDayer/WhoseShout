@@ -5,8 +5,8 @@ namespace WhoseShoutWeb.DataObjects
 {
     public class FriendItem : EntityData
     {
-        public Guid UserId { get; set; }
-        public Guid FriendId { get; set; }
+        public String UserId { get; set; }
+        public String FriendId { get; set; }
         public string Name { get; set; }
     }
 }

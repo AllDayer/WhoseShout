@@ -48,10 +48,10 @@ namespace WhoseShoutWeb
     {
         protected override void Seed(MobileServiceContext context)
         {
-            Guid tristanGuid = Guid.NewGuid();
-            Guid normanGuid = Guid.NewGuid();
-            Guid elspethGuid = Guid.NewGuid();
-            Guid georgieGuid = Guid.NewGuid();
+            String tristanGuid = Guid.NewGuid().ToString();
+            String normanGuid = Guid.NewGuid().ToString();
+            String elspethGuid = Guid.NewGuid().ToString();
+            String georgieGuid = Guid.NewGuid().ToString();
 
             List<UserItem> userItems = new List<UserItem>
             {

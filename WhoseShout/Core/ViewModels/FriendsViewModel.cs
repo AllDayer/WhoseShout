@@ -13,8 +13,8 @@ namespace WhoseShout.Core.ViewModels
         IService m_Service;
 
   
-		ObservableCollection<Friend> m_Friends = new ObservableCollection<Friend>();
-		public ObservableCollection<Friend> Friends
+		ObservableCollection<FriendItem> m_Friends = new ObservableCollection<FriendItem>();
+		public ObservableCollection<FriendItem> Friends
 		{
 			get
 			{
@@ -44,7 +44,7 @@ namespace WhoseShout.Core.ViewModels
         public FriendsViewModel()
 		{
             m_Service = ServiceLocator.Instance.Resolve<IService>();
-            var fds = m_Service.GetFriends();
+            //var fds = m_Service.GetFriends();
             Refresh();
 		}
 
@@ -55,7 +55,7 @@ namespace WhoseShout.Core.ViewModels
 
         async Task ExecuteRefreshCommand()
         {
-            var fds = await m_Service.GetFriends();
+            var fds = await m_Service.GetFriends("123");
             Friends.Clear();
             foreach(var f in fds)
             {

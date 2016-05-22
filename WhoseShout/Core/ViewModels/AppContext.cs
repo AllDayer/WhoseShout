@@ -10,8 +10,8 @@ namespace WhoseShout.Core.ViewModels
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private IList<Friend> m_Friends = new List<Friend>();
-        public IList<Friend> Friends
+        private IList<FriendItem> m_Friends = new List<FriendItem>();
+        public IList<FriendItem> Friends
         {
             get
             {

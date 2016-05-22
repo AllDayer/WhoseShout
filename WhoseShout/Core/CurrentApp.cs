@@ -16,7 +16,16 @@ namespace WhoseShout.Core
         public static void StartUp()
         {
             AppContext = new WhoseShout.Core.ViewModels.AppContext();
-            ServiceLocator.Instance.Add<IService, MockService>();
+
+            bool useMock = false;
+            if (useMock)
+            {
+                ServiceLocator.Instance.Add<IService, MockService>();
+            }
+            else
+            {
+                ServiceLocator.Instance.Add<IService, AzureService>();
+            }
         }
     }
 }

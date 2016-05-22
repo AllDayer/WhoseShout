@@ -10,6 +10,7 @@ namespace WhoseShout.Core
         public App()
         {
             Mvx.RegisterType<IService, MockService>();
+            Mvx.RegisterType<IService, AzureService>();
             //Mvx.RegisterSingleton<IMvxAppStart>(new MvxAppStart<MainViewModel>());
             RegisterAppStart<MainViewModel>();
 

@@ -9,15 +9,17 @@ namespace WhoseShout.Services
 	{
 		Task Initialize();
 
-		Task<IEnumerable<Friend>> GetFriends();
+		Task<IEnumerable<FriendItem>> GetFriends(String userId);
 
-		Task<Friend> AddFriend(string name);
+		Task<FriendItem> AddFriend(String friendId, String userId, string name);
 
-		Task<Friend> UpdateFriend(Friend friend);
+		Task<FriendItem> UpdateFriend(FriendItem friend);
 
-		Task<bool> DeleteFriend(Friend friend);
+		Task<bool> DeleteFriend(FriendItem friend);
 
-		Task SyncFriends();
+		Task SyncFriends(String userId);
+
+        Task<UserItem> AddUser(String userId, string name);
 
 	}
 }

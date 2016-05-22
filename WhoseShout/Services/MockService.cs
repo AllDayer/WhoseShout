@@ -9,7 +9,7 @@ namespace WhoseShout.Services
 	public class MockService : IService
 	{
 
-		List<Friend> friends { get; set; } = new List<Friend>();
+		List<FriendItem> friends { get; set; } = new List<FriendItem>();
 
 		public MockService()
 		{
@@ -19,9 +19,9 @@ namespace WhoseShout.Services
 			}
 		}
 
-		public Task<Friend> AddFriend(string name)
+		public Task<FriendItem> AddFriend(String friendId, String userId, string name)
 		{
-            var friend = new Friend()
+            var friend = new FriendItem()
             {
                 Name = name
             };
@@ -30,13 +30,13 @@ namespace WhoseShout.Services
             return Task.FromResult(friend);
 		}
 
-        List<Friend> MockFriends()
+        List<FriendItem> MockFriends()
         {
-            var items = new List<Friend>();
+            var items = new List<FriendItem>();
 
-            items.Add(new Friend() { Name = "Norman" });
+            items.Add(new FriendItem() { Name = "Norman" });
 
-            items.Add(new Friend() { Name = "Tristan" });
+            items.Add(new FriendItem() { Name = "Tristan" });
 
             return items;
         }
@@ -46,13 +46,13 @@ namespace WhoseShout.Services
 			return null;
         }
 
-        public Task<IEnumerable<Friend>> GetFriends()
+        public Task<IEnumerable<FriendItem>> GetFriends(String userId)
         {
-			IEnumerable<Friend> items = friends.AsEnumerable();
+			IEnumerable<FriendItem> items = friends.AsEnumerable();
 			return Task.FromResult(items);
         }
 
-        public Task<Friend> UpdateFriend(Friend friend)
+        public Task<FriendItem> UpdateFriend(FriendItem friend)
         {
 			var item = friends.FirstOrDefault(x => x.FriendId == friend.FriendId);
 			friends.Remove(item);
@@ -61,15 +61,25 @@ namespace WhoseShout.Services
 
         }
 
-        public Task<bool> DeleteFriend(Friend friend)
+        public Task<bool> DeleteFriend(FriendItem friend)
         {
 			friends.Remove(friend);
 			return Task.FromResult(true);
         }
 
-        public Task SyncFriends()
+        public Task SyncFriends(String userId)
         {
 			return null;
+        }
+
+        public Task AddUser(String userId, string name)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<UserItem> IService.AddUser(string userId, string name)
+        {
+            throw new NotImplementedException();
         }
     }
 }

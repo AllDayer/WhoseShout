@@ -68,6 +68,7 @@ namespace WhoseShout.Activities
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
+            Microsoft.WindowsAzure.MobileServices.CurrentPlatform.Init();
 
             SetContentView(LayoutResource);
             Toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
@@ -109,7 +110,7 @@ namespace WhoseShout.Activities
 
             GoogleSignIn();
 
-            ShowFragment(Resource.Id.nav_home);
+            ShowFragment(Resource.Id.nav_friends);
 
         }
 
@@ -273,9 +274,14 @@ namespace WhoseShout.Activities
         {
             if (result.IsSuccess)
             {
+
+
                 mGoogleSignInAccount = result.SignInAccount;
                 navigationView.GetHeaderView(0).FindViewById<TextView>(Resource.Id.profile_name).Text = mGoogleSignInAccount.DisplayName;
                 navigationView.GetHeaderView(0).FindViewById<TextView>(Resource.Id.profile_email).Text = mGoogleSignInAccount.Email;
+
+                IService service = ServiceLocator.Instance.Resolve<IService>();
+                service.AddUser(mGoogleSignInAccount.Id, mGoogleSignInAccount.DisplayName);
                 //var view = inflater.Inflate(Resource.Layout.fragment_profile, null);
                 //FindViewById(
             }
