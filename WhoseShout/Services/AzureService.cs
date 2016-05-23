@@ -75,11 +75,29 @@ namespace WhoseShout.Services
                 UserId = userId,
                 Name = name
             };
-
-            await userTable.InsertAsync(item);
+            List<UserItem> exists = await userTable.Where(u => u.UserId == userId).ToListAsync();
+            if (exists.Count == 0) // This is shit
+            {
+                await userTable.InsertAsync(item);
+            }
             //Synchronize friends
             await SyncFriends(userId);
             return item;
+        }
+
+        public async Task<bool> DeleteUser(UserItem user)
+        {
+            await Initialize();
+            try
+            {
+                await userTable.DeleteAsync(user);
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public async Task<IEnumerable<FriendItem>> GetFriends(String userId)
@@ -94,7 +112,7 @@ namespace WhoseShout.Services
 
             await Initialize();
             var item = new FriendItem
-            { 
+            {
                 UserId = userId,
                 FriendId = friendId,
                 Name = name//Remove this
@@ -111,7 +129,7 @@ namespace WhoseShout.Services
             await Initialize();
 
             await friendTable.UpdateAsync(friend);
-            
+
             await SyncFriends(friend.UserId);
             return friend;
         }

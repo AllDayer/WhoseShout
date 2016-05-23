@@ -187,6 +187,7 @@
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="DataObjects\FriendItem.cs" />
     <Compile Include="DataObjects\UserItem.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\MobileServiceContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
