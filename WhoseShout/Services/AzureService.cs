@@ -35,11 +35,11 @@ namespace WhoseShout.Services
             };
 
             var store = new MobileServiceSQLiteStore("whoseshout.db");
-            //store.DefineTable<User>();
+            store.DefineTable<UserItem>();
             store.DefineTable<FriendItem>();
 
             await MobileService.SyncContext.InitializeAsync(store, new MobileServiceSyncHandler());
-            //userTable = MobileService.GetSyncTable<User>();
+            userTable = MobileService.GetSyncTable<UserItem>();
             friendTable = MobileService.GetSyncTable<FriendItem>();
 
             m_IsInitialised = true;

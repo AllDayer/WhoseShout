@@ -24,7 +24,7 @@ namespace WhoseShoutWeb
 
             // Use Entity Framework Code First to create database tables based on your DbContext
             Database.SetInitializer(new MobileServiceInitializer());
-
+            
             MobileAppSettingsDictionary settings = config.GetMobileAppSettingsProvider().GetMobileAppSettings();
 
             if (string.IsNullOrEmpty(settings.HostName))
@@ -44,7 +44,7 @@ namespace WhoseShoutWeb
         }
     }
 
-    public class MobileServiceInitializer : CreateDatabaseIfNotExists<MobileServiceContext>
+    public class MobileServiceInitializer : DropCreateDatabaseAlways<MobileServiceContext>
     {
         protected override void Seed(MobileServiceContext context)
         {
