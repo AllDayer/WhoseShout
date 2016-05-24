@@ -14,8 +14,8 @@ namespace WhoseShout.Services
     {
         public MobileServiceClient MobileService { get; set; }
 
-        IMobileServiceSyncTable<UserItem> userTable;
-        IMobileServiceSyncTable<FriendItem> friendTable;
+        IMobileServiceSyncTable<User> userTable;
+        IMobileServiceSyncTable<Friend> friendTable;
         IMobileServiceSyncTable<FriendRequest> friendRequestTable;
 
         bool m_IsInitialised;
@@ -36,13 +36,13 @@ namespace WhoseShout.Services
             };
 
             var store = new MobileServiceSQLiteStore("whoseshout.db");
-            store.DefineTable<UserItem>();
-            store.DefineTable<FriendItem>();
+            store.DefineTable<User>();
+            store.DefineTable<Friend>();
             store.DefineTable<FriendRequest>();
 
             await MobileService.SyncContext.InitializeAsync(store, new MobileServiceSyncHandler());
-            userTable = MobileService.GetSyncTable<UserItem>();
-            friendTable = MobileService.GetSyncTable<FriendItem>();
+            userTable = MobileService.GetSyncTable<User>();
+            friendTable = MobileService.GetSyncTable<Friend>();
             friendRequestTable = MobileService.GetSyncTable<FriendRequest>();
 
             m_IsInitialised = true;
@@ -63,10 +63,10 @@ namespace WhoseShout.Services
             }
         }
 
-        public async Task<UserItem> AddUser(String userId, String name, String email)
+        public async Task<User> AddUser(String userId, String name, String email)
         {
             await Initialize();
-            var item = new UserItem
+            var item = new User
             {
                 UserId = userId,
                 Name = name,
@@ -75,7 +75,7 @@ namespace WhoseShout.Services
 
             await SyncUsers(userId);
 
-            List<UserItem> exists = await userTable.ToListAsync();
+            List<User> exists = await userTable.ToListAsync();
 
             //foreach(var e in exists)
             //{
@@ -91,7 +91,7 @@ namespace WhoseShout.Services
             return item;
         }
 
-        public async Task<bool> DeleteUser(UserItem user)
+        public async Task<bool> DeleteUser(User user)
         {
             await Initialize();
             try
@@ -127,18 +127,18 @@ namespace WhoseShout.Services
             }
         }
 
-        public async Task<IEnumerable<FriendItem>> GetFriends(String userId)
+        public async Task<IEnumerable<Friend>> GetFriends(String userId)
         {
             await Initialize();
             await SyncFriends(userId);
             return await friendTable.ToEnumerableAsync();
         }
 
-        public async Task<FriendItem> AddFriend(String userId, String friendId, string name)
+        public async Task<Friend> AddFriend(String userId, String friendId, string name)
         {
 
             await Initialize();
-            var item = new FriendItem
+            var item = new Friend
             {
                 UserId = userId,
                 FriendId = friendId,
@@ -151,7 +151,7 @@ namespace WhoseShout.Services
             return item;
         }
 
-        public async Task<FriendItem> UpdateFriend(FriendItem friend)
+        public async Task<Friend> UpdateFriend(Friend friend)
         {
             await Initialize();
 
@@ -161,7 +161,7 @@ namespace WhoseShout.Services
             return friend;
         }
 
-        public async Task<bool> DeleteFriend(FriendItem friend)
+        public async Task<bool> DeleteFriend(Friend friend)
         {
             await Initialize();
             try

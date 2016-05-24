@@ -1,9 +1,8 @@
 ﻿using System;
-using WhoseShout.Helpers;
 
 namespace WhoseShout.Models
 {
-    public class FriendItem : EntityData
+    public class Friend : BaseDataObject
     {
         public String UserId { get; set; }
         public String FriendId { get; set; }

@@ -4,8 +4,8 @@ using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.OData;
 using Microsoft.Azure.Mobile.Server;
-using WhoseShoutWeb.DataObjects;
 using WhoseShoutWeb.Models;
+using WhoseShout.Models;
 
 namespace WhoseShoutWeb.Controllers
 {

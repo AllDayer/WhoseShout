@@ -9,7 +9,7 @@ namespace WhoseShout.Services
 	public class MockService : IService
 	{
 
-		List<FriendItem> friends { get; set; } = new List<FriendItem>();
+		List<Friend> friends { get; set; } = new List<Friend>();
 
 		public MockService()
 		{
@@ -19,9 +19,9 @@ namespace WhoseShout.Services
 			}
 		}
 
-		public Task<FriendItem> AddFriend(String friendId, String userId, string name)
+		public Task<Friend> AddFriend(String friendId, String userId, string name)
 		{
-            var friend = new FriendItem()
+            var friend = new Friend()
             {
                 Name = name
             };
@@ -30,13 +30,13 @@ namespace WhoseShout.Services
             return Task.FromResult(friend);
 		}
 
-        List<FriendItem> MockFriends()
+        List<Friend> MockFriends()
         {
-            var items = new List<FriendItem>();
+            var items = new List<Friend>();
 
-            items.Add(new FriendItem() { Name = "Norman" });
+            items.Add(new Friend() { Name = "Norman" });
 
-            items.Add(new FriendItem() { Name = "Tristan" });
+            items.Add(new Friend() { Name = "Tristan" });
 
             return items;
         }
@@ -46,13 +46,13 @@ namespace WhoseShout.Services
 			return null;
         }
 
-        public Task<IEnumerable<FriendItem>> GetFriends(String userId)
+        public Task<IEnumerable<Friend>> GetFriends(String userId)
         {
-			IEnumerable<FriendItem> items = friends.AsEnumerable();
+			IEnumerable<Friend> items = friends.AsEnumerable();
 			return Task.FromResult(items);
         }
 
-        public Task<FriendItem> UpdateFriend(FriendItem friend)
+        public Task<Friend> UpdateFriend(Friend friend)
         {
 			var item = friends.FirstOrDefault(x => x.FriendId == friend.FriendId);
 			friends.Remove(item);
@@ -61,7 +61,7 @@ namespace WhoseShout.Services
 
         }
 
-        public Task<bool> DeleteFriend(FriendItem friend)
+        public Task<bool> DeleteFriend(Friend friend)
         {
 			friends.Remove(friend);
 			return Task.FromResult(true);
@@ -77,12 +77,12 @@ namespace WhoseShout.Services
             throw new NotImplementedException();
         }
 
-        Task<UserItem> IService.AddUser(string userId, string name, string email)
+        Task<User> IService.AddUser(string userId, string name, string email)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> DeleteUser(UserItem user)
+        public Task<bool> DeleteUser(User user)
         {
             throw new NotImplementedException();
         }

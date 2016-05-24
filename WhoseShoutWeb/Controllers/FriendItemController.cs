@@ -4,42 +4,42 @@ using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.OData;
 using Microsoft.Azure.Mobile.Server;
-using WhoseShoutWeb.DataObjects;
 using WhoseShoutWeb.Models;
+using WhoseShout.Models;
 
 namespace WhoseShoutWeb.Controllers
 {
-    public class FriendItemController : TableController<FriendItem>
+    public class FriendItemController : TableController<Friend>
     {
         protected override void Initialize(HttpControllerContext controllerContext)
         {
             base.Initialize(controllerContext);
             MobileServiceContext context = new MobileServiceContext();
-            DomainManager = new EntityDomainManager<FriendItem>(context, Request, enableSoftDelete: true);
+            DomainManager = new EntityDomainManager<Friend>(context, Request, enableSoftDelete: true);
         }
 
         // GET tables/FriendItem
-        public IQueryable<FriendItem> GetAllFriendItems()
+        public IQueryable<Friend> GetAllFriendItems()
         {
             return Query();
         }
 
         // GET tables/FriendItem/48D68C86-6EA6-4C25-AA33-223FC9A27959
-        public SingleResult<FriendItem> GetFriendItem(string id)
+        public SingleResult<Friend> GetFriendItem(string id)
         {
             return Lookup(id);
         }
 
         // PATCH tables/FriendItem/48D68C86-6EA6-4C25-AA33-223FC9A27959
-        public Task<FriendItem> PatchFriendItem(string id, Delta<FriendItem> patch)
+        public Task<Friend> PatchFriendItem(string id, Delta<Friend> patch)
         {
             return UpdateAsync(id, patch);
         }
 
         // POST tables/FriendItem
-        public async Task<IHttpActionResult> PostFriendItem(FriendItem item)
+        public async Task<IHttpActionResult> PostFriendItem(Friend item)
         {
-            FriendItem current = await InsertAsync(item);
+            Friend current = await InsertAsync(item);
             return CreatedAtRoute("Tables", new { id = current.Id }, current);
         }
 

@@ -280,7 +280,7 @@ namespace WhoseShout.Activities
                 navigationView.GetHeaderView(0).FindViewById<TextView>(Resource.Id.profile_name).Text = mGoogleSignInAccount.DisplayName;
                 navigationView.GetHeaderView(0).FindViewById<TextView>(Resource.Id.profile_email).Text = mGoogleSignInAccount.Email;
 
-                CurrentApp.AppContext.UserProfile = new Models.UserItem()
+                CurrentApp.AppContext.UserProfile = new Models.User()
                 {
                     UserId = mGoogleSignInAccount.Id,
                     Name = mGoogleSignInAccount.DisplayName,

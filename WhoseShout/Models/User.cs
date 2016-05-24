@@ -1,10 +1,9 @@
 using System;
-using WhoseShout.Helpers;
 
 
 namespace WhoseShout.Models
 {
-    public class UserItem : EntityData
+    public class User : BaseDataObject
     {
         public String UserId { get; set; }
         public String Name { get; set; }

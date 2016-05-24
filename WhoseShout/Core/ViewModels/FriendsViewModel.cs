@@ -13,8 +13,8 @@ namespace WhoseShout.Core.ViewModels
         IService m_Service;
 
   
-		ObservableCollection<FriendItem> m_Friends = new ObservableCollection<FriendItem>();
-		public ObservableCollection<FriendItem> Friends
+		ObservableCollection<Friend> m_Friends = new ObservableCollection<Friend>();
+		public ObservableCollection<Friend> Friends
 		{
 			get
 			{

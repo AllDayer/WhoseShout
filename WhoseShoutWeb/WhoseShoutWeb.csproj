@@ -27,7 +27,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;BACKEND</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -35,7 +35,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>TRACE;BACKEND</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -181,14 +181,23 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\WhoseShout\Models\BaseDataObject.cs">
+      <Link>DataObjects\BaseDataObject.cs</Link>
+    </Compile>
+    <Compile Include="..\WhoseShout\Models\Friend.cs">
+      <Link>DataObjects\Friend.cs</Link>
+    </Compile>
+    <Compile Include="..\WhoseShout\Models\FriendRequest.cs">
+      <Link>DataObjects\FriendRequest.cs</Link>
+    </Compile>
+    <Compile Include="..\WhoseShout\Models\User.cs">
+      <Link>DataObjects\User.cs</Link>
+    </Compile>
     <Compile Include="App_Start\Startup.MobileApp.cs" />
     <Compile Include="Controllers\FriendItemController.cs" />
     <Compile Include="Controllers\FriendRequestController.cs" />
     <Compile Include="Controllers\UserItemController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
-    <Compile Include="DataObjects\FriendItem.cs" />
-    <Compile Include="DataObjects\FriendRequest.cs" />
-    <Compile Include="DataObjects\UserItem.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\MobileServiceContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

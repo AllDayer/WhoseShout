@@ -1,9 +1,8 @@
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
-using Microsoft.Azure.Mobile.Server;
 using Microsoft.Azure.Mobile.Server.Tables;
-using WhoseShoutWeb.DataObjects;
+using WhoseShout.Models;
 
 namespace WhoseShoutWeb.Models
 {
@@ -26,8 +25,8 @@ namespace WhoseShoutWeb.Models
         {
         }
 
-        public DbSet<UserItem> UserItems { get; set; }
-        public DbSet<FriendItem> FriendItems { get; set; }
+        public DbSet<User> UserItems { get; set; }
+        public DbSet<Friend> FriendItems { get; set; }
         public DbSet<FriendRequest> FriendRequests { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

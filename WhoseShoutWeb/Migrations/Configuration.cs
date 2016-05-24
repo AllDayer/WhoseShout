@@ -1,12 +1,11 @@
 namespace WhoseShoutWeb.Migrations
 {
-    using DataObjects;
     using System;
     using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
-
+    using WhoseShout.Models;
     internal sealed class Configuration : DbMigrationsConfiguration<WhoseShoutWeb.Models.MobileServiceContext>
     {
         public Configuration()
@@ -21,40 +20,33 @@ namespace WhoseShoutWeb.Migrations
             String elspethGuid = Guid.NewGuid().ToString();
             String georgieGuid = Guid.NewGuid().ToString();
 
-            List<UserItem> userItems = new List<UserItem>
+            List<User> users = new List<User>
             {
-                new UserItem { Id = tristanGuid.ToString(), UserId = tristanGuid, Name = "Tristan", Email = "tristan.drummond@gmail.com" },
-                new UserItem { Id = normanGuid.ToString(), UserId = normanGuid, Name = "Norman" },
-                new UserItem { Id = elspethGuid.ToString(), UserId = elspethGuid, Name = "Elspeth" },
-                new UserItem { Id = georgieGuid.ToString(), UserId = georgieGuid, Name = "Georgie" },
+                new User { Id = tristanGuid.ToString(), UserId = tristanGuid, Name = "Tristan" },
+                new User { Id = normanGuid.ToString(), UserId = normanGuid, Name = "Norman" },
+                new User { Id = elspethGuid.ToString(), UserId = elspethGuid, Name = "Elspeth" },
+                new User { Id = georgieGuid.ToString(), UserId = georgieGuid, Name = "Georgie" },
             };
-            List<FriendItem> friendItems = new List<FriendItem>
+            List<Friend> friends = new List<Friend>
             {
-                new FriendItem { Id = Guid.NewGuid().ToString(), UserId = tristanGuid, FriendId = elspethGuid },
-                new FriendItem { Id = Guid.NewGuid().ToString(), UserId = elspethGuid, FriendId = tristanGuid },
-                new FriendItem { Id = Guid.NewGuid().ToString(), UserId = tristanGuid, FriendId = normanGuid },
-                new FriendItem { Id = Guid.NewGuid().ToString(), UserId = normanGuid, FriendId = tristanGuid },
-                new FriendItem { Id = Guid.NewGuid().ToString(), UserId = normanGuid, FriendId = georgieGuid },
+                new Friend { Id = Guid.NewGuid().ToString(), UserId = tristanGuid, FriendId = elspethGuid },
+                new Friend { Id = Guid.NewGuid().ToString(), UserId = elspethGuid, FriendId = tristanGuid },
+                new Friend { Id = Guid.NewGuid().ToString(), UserId = tristanGuid, FriendId = normanGuid },
+                new Friend { Id = Guid.NewGuid().ToString(), UserId = normanGuid, FriendId = tristanGuid },
+                new Friend { Id = Guid.NewGuid().ToString(), UserId = normanGuid, FriendId = georgieGuid },
             };
 
-            foreach (UserItem useritem in userItems)
+            foreach (User useritem in users)
             {
-                context.Set<UserItem>().AddOrUpdate(useritem);
+                context.Set<User>().Add(useritem);
             }
 
-            foreach (FriendItem friendItem in friendItems)
+            foreach (Friend friendItem in friends)
             {
-                context.Set<FriendItem>().AddOrUpdate(friendItem);
+                context.Set<Friend>().Add(friendItem);
             }
 
-            FriendRequest fr = new FriendRequest()
-            {
-                UserId = tristanGuid.ToString(),
-                FutureFriendId = normanGuid.ToString(),
-                ApproveFlag = true
-            };
-
-            context.Set<FriendRequest>().AddOrUpdate(fr);
+            base.Seed(context);
         }
     }
 }

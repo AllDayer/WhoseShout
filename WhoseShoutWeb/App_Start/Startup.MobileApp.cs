@@ -6,9 +6,9 @@ using System.Web.Http;
 using Microsoft.Azure.Mobile.Server;
 using Microsoft.Azure.Mobile.Server.Authentication;
 using Microsoft.Azure.Mobile.Server.Config;
-using WhoseShoutWeb.DataObjects;
 using WhoseShoutWeb.Models;
 using Owin;
+using WhoseShout.Models;
 
 namespace WhoseShoutWeb
 {
@@ -53,30 +53,30 @@ namespace WhoseShoutWeb
             String elspethGuid = Guid.NewGuid().ToString();
             String georgieGuid = Guid.NewGuid().ToString();
 
-            List<UserItem> userItems = new List<UserItem>
+            List<User> users = new List<User>
             {
-                new UserItem { Id = tristanGuid.ToString(), UserId = tristanGuid, Name = "Tristan" },
-                new UserItem { Id = normanGuid.ToString(), UserId = normanGuid, Name = "Norman" },
-                new UserItem { Id = elspethGuid.ToString(), UserId = elspethGuid, Name = "Elspeth" },
-                new UserItem { Id = georgieGuid.ToString(), UserId = georgieGuid, Name = "Georgie" },
+                new User { Id = tristanGuid.ToString(), UserId = tristanGuid, Name = "Tristan" },
+                new User { Id = normanGuid.ToString(), UserId = normanGuid, Name = "Norman" },
+                new User { Id = elspethGuid.ToString(), UserId = elspethGuid, Name = "Elspeth" },
+                new User { Id = georgieGuid.ToString(), UserId = georgieGuid, Name = "Georgie" },
             };
-            List<FriendItem> friendItems = new List<FriendItem>
+            List<Friend> friends = new List<Friend>
             {
-                new FriendItem { Id = Guid.NewGuid().ToString(), UserId = tristanGuid, FriendId = elspethGuid },
-                new FriendItem { Id = Guid.NewGuid().ToString(), UserId = elspethGuid, FriendId = tristanGuid },
-                new FriendItem { Id = Guid.NewGuid().ToString(), UserId = tristanGuid, FriendId = normanGuid },
-                new FriendItem { Id = Guid.NewGuid().ToString(), UserId = normanGuid, FriendId = tristanGuid },
-                new FriendItem { Id = Guid.NewGuid().ToString(), UserId = normanGuid, FriendId = georgieGuid },
+                new Friend { Id = Guid.NewGuid().ToString(), UserId = tristanGuid, FriendId = elspethGuid },
+                new Friend { Id = Guid.NewGuid().ToString(), UserId = elspethGuid, FriendId = tristanGuid },
+                new Friend { Id = Guid.NewGuid().ToString(), UserId = tristanGuid, FriendId = normanGuid },
+                new Friend { Id = Guid.NewGuid().ToString(), UserId = normanGuid, FriendId = tristanGuid },
+                new Friend { Id = Guid.NewGuid().ToString(), UserId = normanGuid, FriendId = georgieGuid },
             };
 
-            foreach (UserItem useritem in userItems)
+            foreach (User useritem in users)
             {
-                context.Set<UserItem>().Add(useritem);
+                context.Set<User>().Add(useritem);
             }
 
-            foreach (FriendItem friendItem in friendItems)
+            foreach (Friend friendItem in friends)
             {
-                context.Set<FriendItem>().Add(friendItem);
+                context.Set<Friend>().Add(friendItem);
             }
 
             base.Seed(context);
