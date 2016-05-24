@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace WhoseShout.Core.ViewModels
 {
-	public class FriendsViewModel : MvxViewModel
+	public class FriendsViewModel : ViewModelBase
 	{
         IService m_Service;
 

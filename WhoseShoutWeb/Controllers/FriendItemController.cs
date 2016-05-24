@@ -14,7 +14,7 @@ namespace WhoseShoutWeb.Controllers
         protected override void Initialize(HttpControllerContext controllerContext)
         {
             base.Initialize(controllerContext);
-            MobileServiceContext context = new MobileServiceContext();
+            WhoseShoutServiceContext context = new WhoseShoutServiceContext();
             DomainManager = new EntityDomainManager<Friend>(context, Request, enableSoftDelete: true);
         }
 

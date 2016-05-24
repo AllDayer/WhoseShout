@@ -2,7 +2,7 @@ using MvvmCross.Core.ViewModels;
 
 namespace WhoseShout.Core.ViewModels
 {
-    public class HomeViewModel : MvxViewModel
+    public class HomeViewModel : ViewModelBase
     {
     }
 }

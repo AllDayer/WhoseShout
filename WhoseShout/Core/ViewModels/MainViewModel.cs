@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace WhoseShout.Core.ViewModels
 {
-    public class MainViewModel : MvxViewModel
+    public class MainViewModel : ViewModelBase
     {
         readonly Type[] _menuItemTypes = {
             typeof(HomeViewModel),

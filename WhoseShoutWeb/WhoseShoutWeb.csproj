@@ -198,8 +198,7 @@
     <Compile Include="Controllers\FriendRequestController.cs" />
     <Compile Include="Controllers\UserItemController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
-    <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\MobileServiceContext.cs" />
+    <Compile Include="Models\WhoseShoutServiceContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

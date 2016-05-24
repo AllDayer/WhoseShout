@@ -169,7 +169,14 @@
     <Compile Include="Core\ViewModels\MainViewModel.cs" />
     <Compile Include="Core\ViewModels\ProfileViewModel.cs" />
     <Compile Include="Core\ViewModels\SettingsViewModel.cs" />
+    <Compile Include="Core\ViewModels\ViewModelBase.cs" />
+    <Compile Include="DataStore.Azure\Interfaces\IBaseStore.cs" />
+    <Compile Include="DataStore.Azure\Interfaces\IFriendStore.cs" />
+    <Compile Include="DataStore.Azure\StoreManager.cs" />
+    <Compile Include="DataStore.Azure\Stores\BaseStore.cs" />
+    <Compile Include="DataStore.Azure\Stores\FriendStore.cs" />
     <Compile Include="Helpers\EntityData.cs" />
+    <Compile Include="DataStore.Azure\Interfaces\IStoreManager.cs" />
     <Compile Include="Helpers\Keys.cs" />
     <Compile Include="Helpers\ServiceLocator.cs" />
     <Compile Include="Models\BaseDataObject.cs" />

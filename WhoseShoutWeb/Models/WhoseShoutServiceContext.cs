@@ -6,7 +6,7 @@ using WhoseShout.Models;
 
 namespace WhoseShoutWeb.Models
 {
-    public class MobileServiceContext : DbContext
+    public class WhoseShoutServiceContext : DbContext
     {
         // You can add custom code to this file. Changes will not be overwritten.
         // 
@@ -21,7 +21,7 @@ namespace WhoseShoutWeb.Models
 
         private const string connectionStringName = "Name=MS_TableConnectionString";
 
-        public MobileServiceContext() : base(connectionStringName)
+        public WhoseShoutServiceContext() : base(connectionStringName)
         {
         }
 

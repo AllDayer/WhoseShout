@@ -2,7 +2,7 @@ using MvvmCross.Core.ViewModels;
 
 namespace WhoseShout.Core.ViewModels
 {
-    public class ProfileViewModel : MvxViewModel
+    public class ProfileViewModel : ViewModelBase
     {
         private string m_Name;
         public string Name

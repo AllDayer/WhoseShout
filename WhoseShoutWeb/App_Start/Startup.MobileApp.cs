@@ -44,9 +44,9 @@ namespace WhoseShoutWeb
         }
     }
 
-    public class MobileServiceInitializer : CreateDatabaseIfNotExists<MobileServiceContext>
+    public class MobileServiceInitializer : DropCreateDatabaseIfModelChanges<WhoseShoutServiceContext>
     {
-        protected override void Seed(MobileServiceContext context)
+        protected override void Seed(WhoseShoutServiceContext context)
         {
             String tristanGuid = Guid.NewGuid().ToString();
             String normanGuid = Guid.NewGuid().ToString();
