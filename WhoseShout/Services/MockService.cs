@@ -77,7 +77,7 @@ namespace WhoseShout.Services
             throw new NotImplementedException();
         }
 
-        Task<UserItem> IService.AddUser(string userId, string name)
+        Task<UserItem> IService.AddUser(string userId, string name, string email)
         {
             throw new NotImplementedException();
         }

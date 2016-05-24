@@ -280,10 +280,18 @@ namespace WhoseShout.Activities
                 navigationView.GetHeaderView(0).FindViewById<TextView>(Resource.Id.profile_name).Text = mGoogleSignInAccount.DisplayName;
                 navigationView.GetHeaderView(0).FindViewById<TextView>(Resource.Id.profile_email).Text = mGoogleSignInAccount.Email;
 
+                CurrentApp.AppContext.UserProfile = new Models.UserItem()
+                {
+                    UserId = mGoogleSignInAccount.Id,
+                    Name = mGoogleSignInAccount.DisplayName,
+                    Email = mGoogleSignInAccount.Email
+                };
+
                 IService service = ServiceLocator.Instance.Resolve<IService>();
-                service.AddUser(mGoogleSignInAccount.Id, mGoogleSignInAccount.DisplayName);
-                //var view = inflater.Inflate(Resource.Layout.fragment_profile, null);
-                //FindViewById(
+                service.AddUser(CurrentApp.AppContext.UserProfile.UserId, CurrentApp.AppContext.UserProfile.Name, CurrentApp.AppContext.UserProfile.Email);
+
+                //service.AddFriendRequest(CurrentApp.AppContext.UserProfile.UserId, "dbca2a93-f595-48da-838f-b20088e57086");
+
             }
         }
 

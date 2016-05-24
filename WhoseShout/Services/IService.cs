@@ -19,7 +19,7 @@ namespace WhoseShout.Services
 
 		Task SyncFriends(String userId);
 
-        Task<UserItem> AddUser(String userId, string name);
+        Task<UserItem> AddUser(String userId, String name, String Email);
 
         Task<bool> DeleteUser(UserItem user);
 

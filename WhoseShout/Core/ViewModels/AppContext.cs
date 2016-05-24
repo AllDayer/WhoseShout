@@ -10,6 +10,20 @@ namespace WhoseShout.Core.ViewModels
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
+        private UserItem m_UserProfile;
+        public UserItem UserProfile
+        {
+            get
+            {
+                return m_UserProfile;
+            }
+            set
+            {
+                m_UserProfile = value;
+                OnPropertyChanged(nameof(UserItem));
+            }
+        }
+
         private IList<FriendItem> m_Friends = new List<FriendItem>();
         public IList<FriendItem> Friends
         {

@@ -55,26 +55,27 @@ namespace WhoseShout.Services
             {
                 await MobileService.SyncContext.PushAsync();
                 await userTable.PurgeAsync();
-                await userTable.PullAsync("allFriendItems" + userId, friendTable.CreateQuery().Where(u => u.UserId == userId));
+                await userTable.PullAsync("allUsers" + userId, userTable.CreateQuery().Where(u => u.UserId == userId));
             }
             catch
             {
-
+                System.Console.WriteLine("Could not fetch user");
             }
         }
 
-        public async Task<UserItem> AddUser(String userId, string name)
+        public async Task<UserItem> AddUser(String userId, String name, String email)
         {
             await Initialize();
             var item = new UserItem
             {
                 UserId = userId,
-                Name = name
+                Name = name,
+                Email = email
             };
 
             await SyncUsers(userId);
 
-            List<UserItem> exists = await userTable.Where(u => u.UserId == userId).ToListAsync();
+            List<UserItem> exists = await userTable.ToListAsync();
 
             //foreach(var e in exists)
             //{
@@ -206,6 +207,14 @@ namespace WhoseShout.Services
                 UserId = userId,
                 FutureFriendId = futureFriendId,
             };
+
+            await SyncFriendRequests(userId);
+
+            List<FriendRequest> exists = await friendRequestTable.Where(u => u.UserId == userId && u.FutureFriendId == futureFriendId).ToListAsync();
+            if (exists.Count == 0) // This is shit
+            {
+                await friendRequestTable.InsertAsync(item);
+            }
 
             await friendRequestTable.InsertAsync(item);
             //Synchronize friendsrequests

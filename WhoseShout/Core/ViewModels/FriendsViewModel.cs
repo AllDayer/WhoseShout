@@ -55,12 +55,12 @@ namespace WhoseShout.Core.ViewModels
 
         async Task ExecuteRefreshCommand()
         {
-            var fds = await m_Service.GetFriends("123");
-            Friends.Clear();
-            foreach(var f in fds)
-            {
-                Friends.Add(f);
-            }
+            //var fds = await m_Service.GetFriends("123");
+            //Friends.Clear();
+            //foreach(var f in fds)
+            //{
+            //    Friends.Add(f);
+            //}
         }
 
 	}

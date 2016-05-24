@@ -23,7 +23,7 @@ namespace WhoseShoutWeb.Migrations
 
             List<UserItem> userItems = new List<UserItem>
             {
-                new UserItem { Id = tristanGuid.ToString(), UserId = tristanGuid, Name = "Tristan" },
+                new UserItem { Id = tristanGuid.ToString(), UserId = tristanGuid, Name = "Tristan", Email = "tristan.drummond@gmail.com" },
                 new UserItem { Id = normanGuid.ToString(), UserId = normanGuid, Name = "Norman" },
                 new UserItem { Id = elspethGuid.ToString(), UserId = elspethGuid, Name = "Elspeth" },
                 new UserItem { Id = georgieGuid.ToString(), UserId = georgieGuid, Name = "Georgie" },

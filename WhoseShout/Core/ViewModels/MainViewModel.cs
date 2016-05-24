@@ -12,6 +12,7 @@ namespace WhoseShout.Core.ViewModels
             typeof(FriendsViewModel),
         };
 
+
         public MainViewModel()
         {
             CurrentApp.MainViewModel = this;
