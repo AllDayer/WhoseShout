@@ -28,6 +28,7 @@ namespace WhoseShoutWeb.Models
 
         public DbSet<UserItem> UserItems { get; set; }
         public DbSet<FriendItem> FriendItems { get; set; }
+        public DbSet<FriendRequest> FriendRequests { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

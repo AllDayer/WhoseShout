@@ -21,6 +21,18 @@ namespace WhoseShout.Services
 
         Task<UserItem> AddUser(String userId, string name);
 
-	}
+        Task<bool> DeleteUser(UserItem user);
+
+        Task SyncUsers(String userId);//Shouldn't be needed
+
+        Task SyncFriendRequests(String userId);
+
+        Task<IEnumerable<FriendRequest>> GetFriendRequests(String userId);
+
+        Task<FriendRequest> AddFriendRequest(String userId, String futureFriendId);
+
+        Task<FriendRequest> UpdateFriendRequest(FriendRequest friendRequest);
+
+    }
 }
 

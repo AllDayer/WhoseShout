@@ -81,6 +81,36 @@ namespace WhoseShout.Services
         {
             throw new NotImplementedException();
         }
+
+        public Task<bool> DeleteUser(UserItem user)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task SyncUsers(string userId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task SyncFriendRequests(string userId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IEnumerable<FriendRequest>> GetFriendRequests(string userId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<FriendRequest> AddFriendRequest(string userId, string futureFriendId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<FriendRequest> UpdateFriendRequest(FriendRequest friendRequest)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

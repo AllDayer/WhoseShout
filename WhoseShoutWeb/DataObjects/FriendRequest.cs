@@ -1,7 +1,10 @@
+﻿using Microsoft.Azure.Mobile.Server;
 using System;
-using WhoseShout.Helpers;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 
-namespace WhoseShout.Models
+namespace WhoseShoutWeb.DataObjects
 {
     public class FriendRequest : EntityData
     {

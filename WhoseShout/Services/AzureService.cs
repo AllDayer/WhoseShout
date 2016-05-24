@@ -16,6 +16,7 @@ namespace WhoseShout.Services
 
         IMobileServiceSyncTable<UserItem> userTable;
         IMobileServiceSyncTable<FriendItem> friendTable;
+        IMobileServiceSyncTable<FriendRequest> friendRequestTable;
 
         bool m_IsInitialised;
 
@@ -37,33 +38,28 @@ namespace WhoseShout.Services
             var store = new MobileServiceSQLiteStore("whoseshout.db");
             store.DefineTable<UserItem>();
             store.DefineTable<FriendItem>();
+            store.DefineTable<FriendRequest>();
 
             await MobileService.SyncContext.InitializeAsync(store, new MobileServiceSyncHandler());
             userTable = MobileService.GetSyncTable<UserItem>();
             friendTable = MobileService.GetSyncTable<FriendItem>();
+            friendRequestTable = MobileService.GetSyncTable<FriendRequest>();
 
             m_IsInitialised = true;
 
         }
 
-        public async Task SyncFriends(String userId)
+        public async Task SyncUsers(String userId)
         {
-            //var key = Helpers.Keys.AzureServiceUrl;
-            //var connected = await Plugin.Connectivity.CrossConnectivity.Current.IsReachable(key);
-            //if (connected == false)
-            //{
-            //    return;
-            //}
-
             try
             {
                 await MobileService.SyncContext.PushAsync();
-                await friendTable.PurgeAsync();
-                await friendTable.PullAsync("allFriendItems" + userId, friendTable.CreateQuery().Where(u => u.UserId == userId));
+                await userTable.PurgeAsync();
+                await userTable.PullAsync("allFriendItems" + userId, friendTable.CreateQuery().Where(u => u.UserId == userId));
             }
-            catch (Exception ex)
+            catch
             {
-                Debug.WriteLine("Unable to sync items, that is alright as we have offline capabilities: " + ex);
+
             }
         }
 
@@ -75,7 +71,16 @@ namespace WhoseShout.Services
                 UserId = userId,
                 Name = name
             };
+
+            await SyncUsers(userId);
+
             List<UserItem> exists = await userTable.Where(u => u.UserId == userId).ToListAsync();
+
+            //foreach(var e in exists)
+            //{
+            //    await DeleteUser(e);
+            //}
+
             if (exists.Count == 0) // This is shit
             {
                 await userTable.InsertAsync(item);
@@ -97,6 +102,27 @@ namespace WhoseShout.Services
             catch
             {
                 return false;
+            }
+        }
+
+        public async Task SyncFriends(String userId)
+        {
+            //var key = Helpers.Keys.AzureServiceUrl;
+            //var connected = await Plugin.Connectivity.CrossConnectivity.Current.IsReachable(key);
+            //if (connected == false)
+            //{
+            //    return;
+            //}
+
+            try
+            {
+                await MobileService.SyncContext.PushAsync();
+                await friendTable.PurgeAsync();
+                await friendTable.PullAsync("allFriendItems" + userId, friendTable.CreateQuery().Where(u => u.UserId == userId));
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Unable to sync items, that is alright as we have offline capabilities: " + ex);
             }
         }
 
@@ -148,6 +174,59 @@ namespace WhoseShout.Services
             {
                 return false;
             }
+        }
+
+        public async Task SyncFriendRequests(String userId)
+        {
+            try
+            {
+                await MobileService.SyncContext.PushAsync();
+                await friendRequestTable.PurgeAsync();
+                await friendRequestTable.PullAsync("allFriendRequests" + userId, friendRequestTable.CreateQuery().Where(u => u.UserId == userId));
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Unable to sync items " + ex);
+            }
+        }
+
+
+        public async Task<IEnumerable<FriendRequest>> GetFriendRequests(String userId)
+        {
+            await Initialize();
+            await SyncFriendRequests(userId);
+            return await friendRequestTable.ToEnumerableAsync();
+        }
+
+        public async Task<FriendRequest> AddFriendRequest(String userId, String futureFriendId)
+        {
+            await Initialize();
+            var item = new FriendRequest
+            {
+                UserId = userId,
+                FutureFriendId = futureFriendId,
+            };
+
+            await friendRequestTable.InsertAsync(item);
+            //Synchronize friendsrequests
+            await SyncFriendRequests(userId);
+            return item;
+        }
+
+        public async Task<FriendRequest> UpdateFriendRequest(FriendRequest friendRequest)
+        {
+            await Initialize();
+
+            await friendRequestTable.UpdateAsync(friendRequest);
+
+            if (friendRequest.ApproveFlag)
+            {
+                await AddFriend(friendRequest.UserId, friendRequest.FutureFriendId, "");
+                await AddFriend(friendRequest.FutureFriendId, friendRequest.UserId, "");
+            }
+
+            await SyncFriendRequests(friendRequest.UserId);
+            return friendRequest;
         }
     }
 }
