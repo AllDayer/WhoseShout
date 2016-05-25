@@ -19,11 +19,12 @@ namespace WhoseShout.Services
 			}
 		}
 
-		public Task<Friend> AddFriend(String friendId, String userId, string name)
+		public Task<Friend> AddFriend(String friendId, String userId)
 		{
             var friend = new Friend()
             {
-                Name = name
+                FriendId = friendId,
+                UserId = userId
             };
 
             friends.Add(friend);
@@ -34,9 +35,9 @@ namespace WhoseShout.Services
         {
             var items = new List<Friend>();
 
-            items.Add(new Friend() { Name = "Norman" });
+            //items.Add(new Friend() { Name = "Norman" });
 
-            items.Add(new Friend() { Name = "Tristan" });
+            //items.Add(new Friend() { Name = "Tristan" });
 
             return items;
         }

@@ -41,7 +41,7 @@ namespace WhoseShout.Core.ViewModels
             }
         }
 
-        public FriendsViewModel()
+        public FriendsViewModel() : base()
 		{
             m_Service = ServiceLocator.Instance.Resolve<IService>();
             //var fds = m_Service.GetFriends();
@@ -55,12 +55,14 @@ namespace WhoseShout.Core.ViewModels
 
         async Task ExecuteRefreshCommand()
         {
+            var fds = await StoreManager.FriendStore.GetItemsAsync(true);
+
             //var fds = await m_Service.GetFriends("123");
-            //Friends.Clear();
-            //foreach(var f in fds)
-            //{
-            //    Friends.Add(f);
-            //}
+            Friends.Clear();
+            foreach (var f in fds)
+            {
+                Friends.Add(f);
+            }
         }
 
 	}

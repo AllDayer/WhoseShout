@@ -9,7 +9,7 @@ using WhoseShout.Models;
 
 namespace WhoseShoutWeb.Controllers
 {
-    public class FriendItemController : TableController<Friend>
+    public class FriendController : TableController<Friend>
     {
         protected override void Initialize(HttpControllerContext controllerContext)
         {

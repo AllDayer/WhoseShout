@@ -35,7 +35,7 @@ namespace WhoseShout.Services
                 }
             };
 
-            var store = new MobileServiceSQLiteStore("whoseshout.db");
+            var store = new MobileServiceSQLiteStore("whoseshoutdb.db");
             store.DefineTable<User>();
             store.DefineTable<Friend>();
             store.DefineTable<FriendRequest>();
@@ -134,7 +134,7 @@ namespace WhoseShout.Services
             return await friendTable.ToEnumerableAsync();
         }
 
-        public async Task<Friend> AddFriend(String userId, String friendId, string name)
+        public async Task<Friend> AddFriend(String userId, String friendId)
         {
 
             await Initialize();
@@ -142,7 +142,7 @@ namespace WhoseShout.Services
             {
                 UserId = userId,
                 FriendId = friendId,
-                Name = name//Remove this
+                //Name = name//Remove this
             };
 
             await friendTable.InsertAsync(item);
@@ -230,8 +230,8 @@ namespace WhoseShout.Services
 
             if (friendRequest.ApproveFlag)
             {
-                await AddFriend(friendRequest.UserId, friendRequest.FutureFriendId, "");
-                await AddFriend(friendRequest.FutureFriendId, friendRequest.UserId, "");
+                await AddFriend(friendRequest.UserId, friendRequest.FutureFriendId);
+                await AddFriend(friendRequest.FutureFriendId, friendRequest.UserId);
             }
 
             await SyncFriendRequests(friendRequest.UserId);

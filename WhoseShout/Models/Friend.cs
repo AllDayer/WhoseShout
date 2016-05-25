@@ -6,7 +6,6 @@ namespace WhoseShout.Models
     {
         public String UserId { get; set; }
         public String FriendId { get; set; }
-        public string Name { get; set; }
         
     }
 }

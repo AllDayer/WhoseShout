@@ -13,6 +13,7 @@ namespace WhoseShout.Core
             Mvx.RegisterType<IService, AzureService>();
             //Mvx.RegisterSingleton<IMvxAppStart>(new MvxAppStart<MainViewModel>());
             RegisterAppStart<MainViewModel>();
+            ViewModelBase.Init();
 
             CurrentApp.StartUp();
         }

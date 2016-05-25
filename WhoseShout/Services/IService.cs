@@ -11,7 +11,7 @@ namespace WhoseShout.Services
 
 		Task<IEnumerable<Friend>> GetFriends(String userId);
 
-		Task<Friend> AddFriend(String friendId, String userId, string name);
+		Task<Friend> AddFriend(String friendId, String userId);
 
 		Task<Friend> UpdateFriend(Friend friend);
 

@@ -194,9 +194,9 @@
       <Link>DataObjects\User.cs</Link>
     </Compile>
     <Compile Include="App_Start\Startup.MobileApp.cs" />
-    <Compile Include="Controllers\FriendItemController.cs" />
+    <Compile Include="Controllers\FriendController.cs" />
     <Compile Include="Controllers\FriendRequestController.cs" />
-    <Compile Include="Controllers\UserItemController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Models\WhoseShoutServiceContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
