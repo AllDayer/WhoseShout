@@ -41,8 +41,6 @@ namespace  WhoseShout.DataStore.Azure
             if (storeManager == null)
                 storeManager = ServiceLocator.Instance.Resolve<IStoreManager>();
 
-            await storeManager.DropEverythingAsync();
-
             if (!storeManager.IsInitialized)
                 await storeManager.InitializeAsync().ConfigureAwait(false);
         }

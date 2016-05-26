@@ -190,11 +190,19 @@
     <Compile Include="..\WhoseShout\Models\FriendRequest.cs">
       <Link>DataObjects\FriendRequest.cs</Link>
     </Compile>
+    <Compile Include="..\WhoseShout\Models\Purchase.cs">
+      <Link>DataObjects\Purchase.cs</Link>
+    </Compile>
+    <Compile Include="..\WhoseShout\Models\ShoutTracker.cs">
+      <Link>DataObjects\ShoutTracker.cs</Link>
+    </Compile>
     <Compile Include="..\WhoseShout\Models\User.cs">
       <Link>DataObjects\User.cs</Link>
     </Compile>
     <Compile Include="App_Start\Startup.MobileApp.cs" />
     <Compile Include="Controllers\FriendController.cs" />
+    <Compile Include="Controllers\ShoutTrackerController.cs" />
+    <Compile Include="Controllers\PurchcaseController.cs" />
     <Compile Include="Controllers\FriendRequestController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />

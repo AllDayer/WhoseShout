@@ -5,8 +5,8 @@ using WhoseShout.Models;
 
 namespace WhoseShout.DataStore.Azure.Interfaces
 {
-    public interface IFriendStore : IBaseStore<Friend>
+    public interface IUserStore : IBaseStore<User>
     {
-        Task<IEnumerable<Friend>> GetAllFriends(String userId);
+        Task<IEnumerable<User>> FindFriends(String name);
     }
 }

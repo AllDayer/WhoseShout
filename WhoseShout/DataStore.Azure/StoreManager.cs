@@ -30,7 +30,7 @@ namespace WhoseShout.DataStore.Azure
 
             var taskList = new List<Task<bool>>();
             taskList.Add(FriendStore.SyncAsync());
-            
+
             var successes = await Task.WhenAll(taskList).ConfigureAwait(false);
             return successes.Any(x => !x);//if any were a failure.
         }
@@ -66,6 +66,10 @@ namespace WhoseShout.DataStore.Azure
                 store = new MobileServiceSQLiteStore(path);
 
                 store.DefineTable<Friend>();
+                store.DefineTable<User>();
+                store.DefineTable<FriendRequest>();
+                store.DefineTable<Purchase>();
+                store.DefineTable<ShoutTracker>();
             }
 
             await MobileService.SyncContext.InitializeAsync(store, new MobileServiceSyncHandler()).ConfigureAwait(false);
@@ -77,7 +81,17 @@ namespace WhoseShout.DataStore.Azure
         IFriendStore friendStore;
         public IFriendStore FriendStore => friendStore ?? (friendStore = ServiceLocator.Instance.Resolve<IFriendStore>());
 
+        IUserStore userStore;
+        public IUserStore UserStore => userStore ?? (userStore = ServiceLocator.Instance.Resolve<IUserStore>());
 
+        IFriendRequestStore friendRequestStore;
+        public IFriendRequestStore FriendRequestStore => friendRequestStore ?? (friendRequestStore = ServiceLocator.Instance.Resolve<IFriendRequestStore>());
+
+        IPurchaseStore purchaseStore;
+        public IPurchaseStore PurchaseStore => purchaseStore ?? (purchaseStore = ServiceLocator.Instance.Resolve<IPurchaseStore>());
+
+        IShoutTrackerStore shoutTrackerStore;
+        public IShoutTrackerStore ShoutTrackerStore => shoutTrackerStore ?? (shoutTrackerStore = ServiceLocator.Instance.Resolve<IShoutTrackerStore>());
         #endregion
 
         //public async Task<MobileServiceUser> LoginAsync(string username, string password)

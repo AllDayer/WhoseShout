@@ -9,14 +9,14 @@ using WhoseShout.Models;
 
 namespace WhoseShout.DataStore.Azure
 {
-    public class FriendStore : BaseStore<Friend>, IFriendStore
+    public class UserStore : BaseStore<User>, IUserStore
     {
 
-        public async Task<IEnumerable<Friend>> GetAllFriends(string userId)
+        public async Task<IEnumerable<User>> FindFriends(string name)
         {
             await InitializeStore().ConfigureAwait(false);
-            var friends = await GetItemsAsync().ConfigureAwait(false);
-            return friends.Where(f => f.UserId == userId);
+            var users = await GetItemsAsync().ConfigureAwait(false);
+            return users.Where(f => f.Name.Contains(name));
 
         }
     }
