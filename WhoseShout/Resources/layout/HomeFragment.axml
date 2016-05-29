@@ -1,16 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!--<android.support.design.widget.CoordinatorLayout
+    android:id="@+id/main_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:local="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent">-->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:local="http://schemas.android.com/apk/res-auto"
+  android:orientation="vertical"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent">
+  <!--local:MvxBind="Visibility StartShout, Converter=Visibility">-->
   <android.support.design.widget.TextInputLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
     <EditText
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Home"
-        local:MvxBind="Text Home" />
+        android:hint="Name"
+        android:icon="@android:drawable/ic_menu_search"
+        local:MvxBind="Text Shout.Name"/>
   </android.support.design.widget.TextInputLayout>
+
+  <MvxAutoCompleteTextView
+     android:id="@+id/FriendsAC"
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:completionThreshold="1"
+     local:MvxItemTemplate="item_friend"
+     local:MvxBind="Text CurrentTextHint;
+                    ItemsSource FriendSuggestions; 
+                      PartialText CurrentTextHint; 
+                      SelectedObject SelectedUser;"/>
+
+
+
 </LinearLayout>
+<!--local:MvxItemTemplate="@layout/item_shoutac"--><!--
+
+    <Button
+    android:id="@+id/action_add"
+    android:text="Add"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    local:MvxBind="Click AddUserCommand"
+      />
+
+    <Button
+        android:id="@+id/action_save"
+        android:text="Save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        local:MvxBind="Click SaveShoutCommand"
+      />
+  </LinearLayout>
+
+
+  <Mvx.MvxListView
+      android:id="@+id/lvshouts"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      local:MvxBind="ItemsSource Shout.Users"
+      local:MvxItemTemplate="@layout/item_shoutuser" />
+
+  <android.support.design.widget.FloatingActionButton
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="bottom|right"
+      android:layout_margin="16dp"
+      android:src="@drawable/ic_plus_sign"
+      local:layout_anchor="@id/lvshouts"
+      local:layout_anchorGravity="bottom|right|end"
+      local:MvxBind="Click StartShoutCommand"/>
+
+</android.support.design.widget.CoordinatorLayout>-->

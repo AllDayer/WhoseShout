@@ -9,27 +9,53 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:weightSum="2">-->
-    <android.support.design.widget.TextInputLayout
+  <android.support.design.widget.TextInputLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+    -->
+    <EditText
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">-->
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Home"
-            android:icon="@android:drawable/ic_menu_search"
-            local:MvxBind="Text FriendsTest" />
-    </android.support.design.widget.TextInputLayout>
-    <Button 
-            android:id="@+id/action_search"
-            android:text="Search"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            local:MvxBind="Click SearchCommand"
+        android:layout_height="wrap_content"
+        android:hint="Home"
+        android:icon="@android:drawable/ic_menu_search"
+        local:MvxBind="Text FriendsSearch" />
+  </android.support.design.widget.TextInputLayout>
+  <Button
+          android:id="@+id/action_search"
+          android:text="Search"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          local:MvxBind="Click SearchCommand"
       />
   <!--</LinearLayout>-->
-    <Mvx.MvxListView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        local:MvxBind="ItemsSource UserSearch"
-        local:MvxItemTemplate="@layout/item_friend" />
+  <TextView android:id="@+id/friendrequests"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="Friend Requests" 
+            local:MvxBind="Visibility HasFriendRequests, Converter=Visibility"/>
+  <Mvx.MvxListView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    local:MvxBind="ItemsSource FriendRequestList;Visibility HasFriendRequests, Converter=Visibility"
+    local:MvxItemTemplate="@layout/item_friendrequest" />
+  <!---->
+  
+  <TextView android:id="@+id/friendstitle"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="Friends" />
+  <Mvx.MvxListView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    local:MvxBind="ItemsSource Friends"
+    local:MvxItemTemplate="@layout/item_friend" />
+  <TextView android:id="@+id/friendssearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Friends Search" />
+  <Mvx.MvxListView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      local:MvxBind="ItemsSource FriendSearchList"
+      local:MvxItemTemplate="@layout/item_friendsearch" />
 </LinearLayout>

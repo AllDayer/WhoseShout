@@ -15,9 +15,16 @@ namespace WhoseShout.DataStore.Azure
         public async Task<IEnumerable<User>> FindFriends(string name)
         {
             await InitializeStore().ConfigureAwait(false);
-            var users = await GetItemsAsync().ConfigureAwait(false);
+            var users = await GetItemsAsync(true).ConfigureAwait(false);
             return users.Where(f => f.Name.Contains(name));
 
+        }
+        
+        public async Task<User> GetUser(String id)
+        {
+            await InitializeStore().ConfigureAwait(false);
+            var users = await GetItemsAsync().ConfigureAwait(false);
+            return users.FirstOrDefault(x => x.UserId == id);
         }
     }
 }

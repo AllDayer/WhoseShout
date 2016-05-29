@@ -49,7 +49,7 @@ namespace WhoseShoutWeb
         protected override void Seed(WhoseShoutServiceContext context)
         {
             String tristanGuid = Guid.NewGuid().ToString();
-            String normanGuid = Guid.NewGuid().ToString();
+            String normanGuid = new Guid("c322993d-cd63-416e-aa0b-aa3f84490f02").ToString();
             String elspethGuid = Guid.NewGuid().ToString();
             String georgieGuid = Guid.NewGuid().ToString();
 
