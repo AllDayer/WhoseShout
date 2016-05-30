@@ -29,13 +29,16 @@
      android:layout_height="wrap_content"
      android:completionThreshold="1"
      local:MvxItemTemplate="item_friend"
-     local:MvxBind="Text CurrentTextHint;
-                    ItemsSource FriendSuggestions; 
-                      PartialText CurrentTextHint; 
-                      SelectedObject SelectedUser;"/>
+     local:MvxBind="Text CurrentTextHint;ItemsSource FriendSuggestions;PartialText CurrentTextHint;SelectedObject SelectedObj"/>
 
 
-
+  <Button
+  android:id="@+id/action_add"
+  android:text="Add"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  local:MvxBind="Click AddUserCommand"
+      />
 </LinearLayout>
 <!--local:MvxItemTemplate="@layout/item_shoutac"--><!--
 

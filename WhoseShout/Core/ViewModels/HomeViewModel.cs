@@ -48,8 +48,21 @@ namespace WhoseShout.Core.ViewModels
             {
                 return new MvxCommand(async () =>
                 {
+                    this.Refresh();
+                    System.Console.WriteLine("Hello");
                     //await StoreManager.u
-                    await StoreManager.ShoutTrackerStore.InsertAsync(Shout);
+                    //await StoreManager.ShoutTrackerStore.InsertAsync(Shout);
+                });
+            }
+        }
+
+        public MvxCommand ItemSelectedCommand
+        {
+            get
+            {
+                return new MvxCommand(() =>
+                {
+                    System.Console.WriteLine(SelectedObj);
                 });
             }
         }
@@ -173,13 +186,16 @@ namespace WhoseShout.Core.ViewModels
         }
 
         private object m_SelectedObject;
-        public object SelectedObject
+        public object SelectedObj
         {
-            get { return m_SelectedObject; }
-            private set
+            get
+            {
+                return m_SelectedObject;
+            }
+            set
             {
                 m_SelectedObject = value;
-                RaisePropertyChanged(nameof(SelectedObject));
+                RaisePropertyChanged(nameof(SelectedObj));
             }
         }
 
@@ -220,7 +236,7 @@ namespace WhoseShout.Core.ViewModels
             FriendSuggestions.Clear();
             foreach (var f in friends)
             {
-                var user = await StoreManager.UserStore.GetUser(f.UserId);
+                var user = await StoreManager.UserStore.GetUser(f.FriendId);
                 if (user != null)
                 {
                     Friends.Add(user);
