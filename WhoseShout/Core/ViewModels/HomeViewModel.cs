@@ -131,12 +131,18 @@ namespace WhoseShout.Core.ViewModels
         public string CurrentTextHint
         {
             get
-            { return m_CurrentTextHint; }
+            {
+                return m_CurrentTextHint;
+            }
             set
             {
+                
                 MvvmCross.Platform.Platform.MvxTrace.Trace("Partial Text Value Sent {0}", value);
                 //Setting _currentTextHint to null if an empty string gets passed here
                 //is extremely important.
+
+                System.Diagnostics.Debug.WriteLine("CurrentTextHint: " + value.ToString());
+
                 if (value == "")
                 {
                     m_CurrentTextHint = null;
@@ -210,6 +216,7 @@ namespace WhoseShout.Core.ViewModels
             {
                 m_SearchTerm = value;
                 this.RaisePropertyChanged(nameof(SearchTerm));
+                RaisePropertyChanged(nameof(FriendSuggestions));
             }
         }
 

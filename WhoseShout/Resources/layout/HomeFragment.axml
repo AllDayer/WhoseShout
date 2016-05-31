@@ -23,13 +23,13 @@
         local:MvxBind="Text Shout.Name"/>
   </android.support.design.widget.TextInputLayout>
 
-  <MvxAutoCompleteTextView
+  <Mvx.MvxAutoCompleteTextView
      android:id="@+id/FriendsAC"
      android:layout_width="match_parent"
      android:layout_height="wrap_content"
      android:completionThreshold="1"
      local:MvxItemTemplate="item_friend"
-     local:MvxBind="Text CurrentTextHint;ItemsSource FriendSuggestions;PartialText CurrentTextHint;SelectedObject SelectedObj"/>
+     local:MvxBind="PartialText CurrentTextHint;SelectedObject SelectedObj;ItemsSource FriendSuggestions"/>
 
 
   <Button

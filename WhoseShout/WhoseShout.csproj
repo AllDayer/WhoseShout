@@ -196,6 +196,7 @@
     <Compile Include="DataStore.Azure\Interfaces\IStoreManager.cs" />
     <Compile Include="Helpers\Keys.cs" />
     <Compile Include="Helpers\ServiceLocator.cs" />
+    <Compile Include="LinkerPleaseInclude.cs" />
     <Compile Include="Models\BaseDataObject.cs" />
     <Compile Include="Models\FriendRequest.cs" />
     <Compile Include="Models\Purchase.cs" />
