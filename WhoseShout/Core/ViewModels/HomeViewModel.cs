@@ -145,8 +145,9 @@ namespace WhoseShout.Core.ViewModels
 
                 if (value == "")
                 {
-                    m_CurrentTextHint = null;
+                    m_CurrentTextHint = "";
                     SetSuggestionsEmpty();
+                    RaisePropertyChanged(nameof(CurrentTextHint));
                     return;
                 }
                 else
@@ -174,7 +175,7 @@ namespace WhoseShout.Core.ViewModels
 
         private void SetSuggestionsEmpty()
         {
-            FriendSuggestions = new List<User>();
+            FriendSuggestions = new List<User>(Friends);
         }
 
         private User m_SelectedUser;
@@ -201,7 +202,20 @@ namespace WhoseShout.Core.ViewModels
             set
             {
                 m_SelectedObject = value;
-                RaisePropertyChanged(nameof(SelectedObj));
+
+                if (m_SelectedObject != null && CurrentTextHint.Length > 0) 
+                {
+                    //var friend = FriendSuggestions.FirstOrDefault(x => x.Name == m_SelectedObject.ToString());
+                    //if (friend != null)
+                    {
+                        //Need a check for this
+                        UsersInShout.Add((User)m_SelectedObject);
+                    }
+
+                    m_SelectedObject = null;
+                    CurrentTextHint = "";
+                    RaisePropertyChanged(nameof(SelectedObj));
+                }
             }
         }
 
@@ -219,6 +233,20 @@ namespace WhoseShout.Core.ViewModels
                 RaisePropertyChanged(nameof(FriendSuggestions));
             }
         }
+
+        private ObservableCollection<User> m_UsersInShout = new ObservableCollection<User>();
+        public ObservableCollection<User> UsersInShout
+        {
+            get
+            {
+                return m_UsersInShout;
+            }
+            set
+            {
+                m_UsersInShout = value;
+            }
+        }
+
 
         public HomeViewModel()
         {
@@ -241,6 +269,7 @@ namespace WhoseShout.Core.ViewModels
 
             var friends = await StoreManager.FriendStore.GetAllFriends(CurrentApp.AppContext.UserProfile.UserId);
             FriendSuggestions.Clear();
+            Friends.Clear();
             foreach (var f in friends)
             {
                 var user = await StoreManager.UserStore.GetUser(f.FriendId);
