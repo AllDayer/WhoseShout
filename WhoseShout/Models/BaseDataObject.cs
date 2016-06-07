@@ -30,6 +30,9 @@ namespace WhoseShout.Models
             Id = Guid.NewGuid().ToString();
         }
 
+        [Microsoft.WindowsAzure.MobileServices.CreatedAt]
+        public DateTimeOffset? CreatedAt { get; set; }
+
         public string RemoteId { get; set; }
 
         [Newtonsoft.Json.JsonProperty("Id")]

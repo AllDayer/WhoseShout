@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:local="http://schemas.android.com/apk/res-auto"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="@android:color/white">
+  <LinearLayout
+      android:orientation="vertical"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        local:MvxBind="Text Name" />
+    <MvxRecyclerView
+      android:id="@+id/lvshoutusers"
+      android:layout_width="match_parent"
+      android:layout_height="200dp"
+      local:MvxBind="ItemsSource Users"
+      local:MvxItemTemplate="@layout/item_shoutuser"
+      />
+
+    <Button
+      android:id="@+id/action_purchase"
+      android:text="Purchase"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      local:MvxBind="Click PurchaseShoutCommand"
+      />
+  </LinearLayout>
+</FrameLayout>

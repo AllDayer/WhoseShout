@@ -25,6 +25,7 @@ using WhoseShout.Core.ViewModels;
 using Android.Support.Design.Widget;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using System.Collections.Generic;
+using WhoseShout.DataStore.Azure.Interfaces;
 
 //462990388141-f5ovgtol24vkrggr92ur5ubg5pfg1e76.apps.googleusercontent.com
 namespace WhoseShout.Activities
@@ -289,6 +290,25 @@ namespace WhoseShout.Activities
 
                 IService service = ServiceLocator.Instance.Resolve<IService>();
                 service.AddUser(CurrentApp.AppContext.UserProfile.UserId, CurrentApp.AppContext.UserProfile.Name, CurrentApp.AppContext.UserProfile.Email);
+
+
+                System.Threading.Tasks.Task.Run(async () =>
+                {
+                    try
+                    {
+                        ViewModelBase.Init();
+                        // Download data
+                        var manager = ServiceLocator.Instance.Resolve<IStoreManager>();
+                        if (manager == null)
+                            return;
+
+                        await manager.SyncAllAsync(false);
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
+                }).Wait(TimeSpan.FromSeconds(60));
 
                 //service.AddFriendRequest(CurrentApp.AppContext.UserProfile.UserId, "dbca2a93-f595-48da-838f-b20088e57086");
 

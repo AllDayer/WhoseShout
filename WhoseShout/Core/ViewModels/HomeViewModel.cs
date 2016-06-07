@@ -11,8 +11,8 @@ namespace WhoseShout.Core.ViewModels
 {
     public class HomeViewModel : ViewModelBase
     {
-        private ArrayAdapter m_Adapter;
 
+        #region NewShout
         public MvxCommand StartShoutCommand
         {
             get
@@ -24,6 +24,13 @@ namespace WhoseShout.Core.ViewModels
                     if (!StartShout)
                     {
                         StartShout = true;
+                        Shout = new ShoutTracker();
+                        Shout.ShoutId = Guid.NewGuid();
+                        UsersInShout.Add(m_CurrentUser);
+                    }
+                    else
+                    {
+                        StartShout = false;
                     }
                     System.Console.WriteLine("Start Shout");
                 });
@@ -36,8 +43,19 @@ namespace WhoseShout.Core.ViewModels
             {
                 return new MvxCommand(async () =>
                 {
-                    await StoreManager.ShoutTrackerStore.InsertAsync(Shout);
-                    StartShout = false;
+                    if (UsersInShout.Count > 1)
+                    {
+                        await StoreManager.ShoutTrackerStore.InsertAsync(Shout);
+                        foreach (var su in UsersInShout)
+                        {
+                            ShoutUser shoutUser = new ShoutUser() { ShoutId = Shout.ShoutId, UserId = su.UserId };
+                            await StoreManager.ShoutUserStore.InsertAsync(shoutUser);
+
+                        }
+
+                        StartShout = false;
+                        UsersInShout.Clear();
+                    }
                 });
             }
         }
@@ -46,7 +64,7 @@ namespace WhoseShout.Core.ViewModels
         {
             get
             {
-                return new MvxCommand(async () =>
+                return new MvxCommand(() =>
                 {
                     this.Refresh();
                     System.Console.WriteLine("Hello");
@@ -136,7 +154,7 @@ namespace WhoseShout.Core.ViewModels
             }
             set
             {
-                
+
                 MvvmCross.Platform.Platform.MvxTrace.Trace("Partial Text Value Sent {0}", value);
                 //Setting _currentTextHint to null if an empty string gets passed here
                 //is extremely important.
@@ -173,11 +191,6 @@ namespace WhoseShout.Core.ViewModels
             }
         }
 
-        private void SetSuggestionsEmpty()
-        {
-            FriendSuggestions = new List<User>(Friends);
-        }
-
         private User m_SelectedUser;
         public User SelectedUser
         {
@@ -203,7 +216,7 @@ namespace WhoseShout.Core.ViewModels
             {
                 m_SelectedObject = value;
 
-                if (m_SelectedObject != null && CurrentTextHint.Length > 0) 
+                if (m_SelectedObject != null && CurrentTextHint.Length > 0)
                 {
                     //var friend = FriendSuggestions.FirstOrDefault(x => x.Name == m_SelectedObject.ToString());
                     //if (friend != null)
@@ -247,11 +260,21 @@ namespace WhoseShout.Core.ViewModels
             }
         }
 
+        private void SetSuggestionsEmpty()
+        {
+            FriendSuggestions = new List<User>(Friends);
+        }
+
+        #endregion
+        #region CurrentShouts
+        public ObservableCollection<ShoutViewModel> CurrentShouts { get; set; }
+        #endregion
 
         public HomeViewModel()
         {
             Friends = new List<User>();
             FriendSuggestions = new List<User>();
+            CurrentShouts = new ObservableCollection<ShoutViewModel>();
             Refresh();
         }
 
@@ -263,9 +286,22 @@ namespace WhoseShout.Core.ViewModels
             });
         }
 
+        private User m_CurrentUser;
 
         async Task ExecuteRefresh()
         {
+            m_CurrentUser = await StoreManager.UserStore.GetUser(CurrentApp.AppContext.UserProfile.UserId);
+            var shoutsForUser = await StoreManager.ShoutUserStore.GetShoutsForUser(CurrentApp.AppContext.UserProfile.UserId);
+            var count = shoutsForUser.Count();
+            foreach (var userShout in shoutsForUser)
+            {
+                ShoutViewModel svm = new ShoutViewModel()
+                {
+                    ShoutId = userShout.ShoutId,
+                };
+                await svm.Initialise(userShout.ShoutId);
+                CurrentShouts.Add(svm);
+            }
 
             var friends = await StoreManager.FriendStore.GetAllFriends(CurrentApp.AppContext.UserProfile.UserId);
             FriendSuggestions.Clear();
@@ -286,6 +322,7 @@ namespace WhoseShout.Core.ViewModels
             //m_Adapter = new ArrayAdapter(Mvx.Resolve, Android.Resource.Layout.SimpleDropDownItem1Line, Friends.ToArray());
 
         }
+        
 
     }
 }

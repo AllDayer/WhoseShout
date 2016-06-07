@@ -30,6 +30,7 @@ namespace WhoseShoutWeb.Models
         public DbSet<FriendRequest> FriendRequests { get; set; }
         public DbSet<Purchase> Purchase { get; set; }
         public DbSet<ShoutTracker> ShoutTracker { get; set; }
+        public DbSet<ShoutUser> ShoutUsers { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

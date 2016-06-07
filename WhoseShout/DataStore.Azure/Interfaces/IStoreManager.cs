@@ -13,6 +13,7 @@ namespace WhoseShout.DataStore.Azure.Interfaces
         IFriendRequestStore FriendRequestStore { get; }
         IPurchaseStore PurchaseStore { get; }
         IShoutTrackerStore ShoutTrackerStore { get; }
+        IShoutUserStore ShoutUserStore { get; }
 
         Task<bool> SyncAllAsync(bool syncUserSpecific);
         Task DropEverythingAsync();

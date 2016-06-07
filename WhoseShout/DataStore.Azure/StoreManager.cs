@@ -29,7 +29,13 @@ namespace WhoseShout.DataStore.Azure
                 await InitializeAsync();
 
             var taskList = new List<Task<bool>>();
+            taskList.Add(UserStore.SyncAsync());
             taskList.Add(FriendStore.SyncAsync());
+            taskList.Add(FriendRequestStore.SyncAsync());
+            taskList.Add(PurchaseStore.SyncAsync());
+            taskList.Add(ShoutTrackerStore.SyncAsync());
+            taskList.Add(ShoutUserStore.SyncAsync());
+
 
             var successes = await Task.WhenAll(taskList).ConfigureAwait(false);
             return successes.Any(x => !x);//if any were a failure.
@@ -42,7 +48,12 @@ namespace WhoseShout.DataStore.Azure
         public Task DropEverythingAsync()
         {
             Keys.UpdateDatabaseId();
+            UserStore.DropTable();
             FriendStore.DropTable();
+            FriendRequestStore.DropTable();
+            PurchaseStore.DropTable();
+            ShoutTrackerStore.DropTable();
+            ShoutUserStore.DropTable();
             IsInitialized = false;
             return Task.FromResult(true);
         }
@@ -70,6 +81,7 @@ namespace WhoseShout.DataStore.Azure
                 store.DefineTable<FriendRequest>();
                 store.DefineTable<Purchase>();
                 store.DefineTable<ShoutTracker>();
+                store.DefineTable<ShoutUser>();
             }
 
             await MobileService.SyncContext.InitializeAsync(store, new MobileServiceSyncHandler()).ConfigureAwait(false);
@@ -92,6 +104,9 @@ namespace WhoseShout.DataStore.Azure
 
         IShoutTrackerStore shoutTrackerStore;
         public IShoutTrackerStore ShoutTrackerStore => shoutTrackerStore ?? (shoutTrackerStore = ServiceLocator.Instance.Resolve<IShoutTrackerStore>());
+
+        IShoutUserStore shoutUserStore;
+        public IShoutUserStore ShoutUserStore => shoutUserStore ?? (shoutUserStore = ServiceLocator.Instance.Resolve<IShoutUserStore>());
         #endregion
 
         //public async Task<MobileServiceUser> LoginAsync(string username, string password)

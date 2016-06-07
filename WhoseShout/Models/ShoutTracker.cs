@@ -9,7 +9,7 @@ namespace WhoseShout.Models
     {
         public Guid ShoutId { get; set; }
         public String Name { get; set; }
-        List<User> Users { get; set; }
-        List<Purchase> Purchases { get; set; }
+        //public List<User> Users { get; set; }
+        //public List<Purchase> Purchases { get; set; }
     }
 }

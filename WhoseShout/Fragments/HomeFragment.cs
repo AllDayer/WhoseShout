@@ -5,6 +5,13 @@ using Android.Views;
 using MvvmCross.Droid.Shared.Attributes;
 using WhoseShout.Core.ViewModels;
 using MvvmCross.Droid.Support.V4;
+
+using Android.Support.Design.Widget;
+using Android.Support.V7.Widget;
+using Android.Views;
+using Android.Widget;
+using MvvmCross.Platform.WeakSubscription;
+using MvvmCross.Droid.Support.V7.RecyclerView;
 using MvvmCross.Binding.Droid.BindingContext;
 
 namespace WhoseShout.Fragments
@@ -26,15 +33,38 @@ namespace WhoseShout.Fragments
             }
         }
 
-		public HomeFragment()
-		{
-			RetainInstance = true;
-		}
+        public HomeFragment()
+        {
+            RetainInstance = true;
+        }
 
+        private IDisposable _itemSelectedToken;
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             var ignore = base.OnCreateView(inflater, container, savedInstanceState);
+
+
+
             var view = this.BindingInflate(Resource.Layout.HomeFragment, null);
+
+            var recyclerView = view.FindViewById<MvxRecyclerView>(Resource.Id.lvshoutusers);
+            if (recyclerView != null)
+            {
+                recyclerView.HasFixedSize = true;
+                var layoutManager = new LinearLayoutManager(Activity);
+                layoutManager.Orientation = (int)Orientation.Horizontal;
+                recyclerView.SetLayoutManager(layoutManager);
+                
+            }
+
+            //_itemSelectedToken = ViewModel.WeakSubscribe(() => ViewModel.SelectedUser,
+            //(sender, args) =>
+            //{
+            //    if (ViewModel.SelectedUser != null)
+            //        Toast.MakeText(Activity,
+            //            $"Selected: {ViewModel.SelectedUser.Name}",
+            //            ToastLength.Short).Show();
+            //});
             return view;
         }
 
@@ -54,15 +84,15 @@ namespace WhoseShout.Fragments
         //			return view;
         //		}
 
-//        void GridOnItemClick(object sender, AdapterView.ItemClickEventArgs itemClickEventArgs)
-//		{
-////			var intent = new Intent(Activity, typeof(FriendActivity));
-////			intent.PutExtra("Title", friends[itemClickEventArgs.Position].Title);
-////			intent.PutExtra("Image", friends[itemClickEventArgs.Position].Image);
-////			intent.PutExtra("Details", friends[itemClickEventArgs.Position].Details);
-////			StartActivity(intent);
-//		}
+        //        void GridOnItemClick(object sender, AdapterView.ItemClickEventArgs itemClickEventArgs)
+        //		{
+        ////			var intent = new Intent(Activity, typeof(FriendActivity));
+        ////			intent.PutExtra("Title", friends[itemClickEventArgs.Position].Title);
+        ////			intent.PutExtra("Image", friends[itemClickEventArgs.Position].Image);
+        ////			intent.PutExtra("Details", friends[itemClickEventArgs.Position].Details);
+        ////			StartActivity(intent);
+        //		}
 
 
-	}
+    }
 }

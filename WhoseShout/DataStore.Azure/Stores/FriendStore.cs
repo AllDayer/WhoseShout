@@ -17,7 +17,6 @@ namespace WhoseShout.DataStore.Azure
             await InitializeStore().ConfigureAwait(false);
             var friends = await GetItemsAsync().ConfigureAwait(false);
             return friends.Where(f => f.UserId == userId);
-
         }
     }
 }

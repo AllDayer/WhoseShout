@@ -20,6 +20,7 @@ namespace WhoseShout.Core.ViewModels
             ServiceLocator.Instance.Add<IFriendRequestStore, FriendRequestStore>();
             ServiceLocator.Instance.Add<IPurchaseStore, PurchaseStore>();
             ServiceLocator.Instance.Add<IShoutTrackerStore, ShoutTrackerStore>();
+            ServiceLocator.Instance.Add<IShoutUserStore, ShoutUserStore>();
 
         }
     }
